@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+dataset=pd.read_csv("C:/Users/91930/Documents/juypter n/DATASETS
+(5)/DATASETS/automobile.csv")
+dataset.head()
+dataset['horsepower'].value_counts()
+sns.boxplot(x=dataset['horsepower'])
+sns.scatterplot(x=dataset['horsepower'],y=dataset['price']);
+ds1_test=dataset[['drive-wheels','body-style','price']]
+ds1_test.head()
+ds_grp=ds1_test.groupby(['drive-wheels','body-style'],as_index=False).mean()
+
+ds_grp
+ds_pivot=ds_grp.pivot(index='drive-wheels',columns='body-style')
+ds_pivot
+sns.heatmap(ds_pivot,cmap="YlGn")

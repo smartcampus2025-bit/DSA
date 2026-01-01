@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+dataset=pd.read_csv("C:/Users/91930/Documents/juypter n/DATASETS
+(5)/DATASETS/melb_data.csv")
+dataset.head()
+df=pd.DataFrame(dataset)
+data_without_missing_row=df.dropna()
+data_without_missing_columns=df.dropna(axis=1)
+data_without_missing_columns.shape
+df.replace(999,0,inplace=True)
+#correcting data format
+df['Rooms']=pd.to_numeric(df['Rooms'])
+df.describe()
+#standardization
+scaler=StandardScaler()
+data_Standard=scaler.fit_transform(df[['Rooms']])
+data_Standard
+#minmax
+MinMaxscaler=MinMaxScaler()
+data_Normalized=MinMaxscaler.fit_transform(df[['Rooms']])
+data_Normalized
+#simple feature scaling
+df['Price_scaled']=df['Price']/df['Price'].max()
+print(df['Price_scaled'])
+#minmax-scaling
+
+df['Price_scaled']=(df['Price']-df['Price'].max())/(df['Price'].max()-df['Price'].max())
+print(df['Price_scaled'])
+df['Price_scaled']=(df['Price']-df['Price'].mean())/df['Price'].std()
+print(df['Price_scaled'])
+#Binning
+Bins=np.linspace(min(df['Price']),max(df['Price']),4)
+labels=['Low','Medium','High']
+df['Price_category']=pd.cut(df['Price'],bins=Bins,labels=labels,include_lowest=True)
+import matplotlib.pyplot as plt
+df['Price'].hist(bins=3,color='lightskyblue',alpha=0.7)
+plt.grid(True)
+plt.show()
+pd.get_dummies(df['Rooms'])

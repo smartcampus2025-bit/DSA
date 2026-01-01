@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+ds=pd.read_csv("C:/Users/91930/Documents/juypter n/DATASETS (5)/DATASETS/melb_data.csv")
+df=pd.DataFrame(ds)
+type(df)
+df.shape
+ds2=df.drop(['Type'],axis=1)
+ds2.shape
+ds=pd.read_csv("C:/Users/91930/Documents/juypter n/DATASETS (5)/DATASETS/melb_data.csv")
+ds.to_excel("melb_data.xlsm",index=False)
+cd=pd.merge(df,ds,on='Address')
+cd.shape
+dataset3=cd.sort_values(by=["Address"])
+dataset3.head()
+finalData=pd.concat([cd,dataset3])
+finalData.shape
+#statistical
+summary=finalData.describe()
+print(summary)
+#skewness
+num_feature=finalData.select_dtypes(include=np.number)
+skewness=num_feature.skew()
+print("Skewness",skewness)
+#co-relation
+num_feature=finalData.select_dtypes(include=np.number)
+corrs=num_feature.corr()
+print("Co-relation",corrs)

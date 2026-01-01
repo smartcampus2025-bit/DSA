@@ -1,0 +1,82 @@
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+dataset=load_breast_cancer(as_frame=True)
+dataset['data'].head()
+dataset['data'].shape
+dataset['target'].head()
+dataset['target'].value_counts()
+x=dataset['data' ]
+y=dataset['target']
+from sklearn.preprocessing import StandardScaler
+# Train-test split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=1)
+# Scaling
+ss_train = StandardScaler()
+x_train = ss_train.fit_transform(x_train)
+ss_test = StandardScaler()
+x_test = ss_test.fit_transform(x_test)
+from sklearn.linear_model import LogisticRegression
+logistic_classifier =LogisticRegression()
+logistic_classifier.fit(x_train,y_train)
+y_pred=logistic_classifier.predict(x_test)
+print(y_pred[0:5])
+print(y_test[0:5])
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+TN, FP, FN, TP = confusion_matrix(y_test, y_pred).ravel()
+print('True Positive(TP) =',TP)
+print('True Positive(FP) = ',FP)
+print('True Positive(TN) = ', TN)
+
+print('True Positive(FN) = ',FN)
+from sklearn import metrics
+import matplotlib.pyplot as plt
+print("Logistic Regression's Accuracy: ", metrics.accuracy_score(y_test,y_pred))
+accuracy= (TP+TN)/(TP+FP+TN+FN)
+print("Logistic Regression Accuracy: ={:0.3f}".format(accuracy))
+models={ }
+#logistic Regression
+from sklearn.linear_model import LogisticRegression
+models['LogisticRegression']= LogisticRegression()
+#Support Vector Machines
+from sklearn.svm import LinearSVC
+models['Support Vector Machines']= LinearSVC()
+#Decision Tree
+from sklearn.tree import DecisionTreeClassifier
+models['Decision Tree']= DecisionTreeClassifier()
+#Random Forest
+from sklearn.ensemble import RandomForestClassifier
+models['Random Forest']= RandomForestClassifier()
+#Naive Bayes
+from sklearn.naive_bayes import GaussianNB
+models['Naive Bayes'] = GaussianNB()
+#K-Nearest Neighbours
+from sklearn.neighbors import KNeighborsClassifier
+models['K-Nearest Neighbors']= KNeighborsClassifier()
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+accuracy, precision, recall = {}, {}, {}
+for key in models.keys():
+models[key].fit(x_train, y_train)
+predictions = models[key].predict(x_test)
+accuracy[key] = accuracy_score(y_test, predictions)
+
+precision[key] = precision_score(y_test, predictions)
+recall[key] = recall_score(y_test, predictions)
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+import pandas as pd
+df_model=pd.DataFrame(index=models.keys(), columns=['Accuracy','Precision','Recall'])
+df_model ['Accuracy']=accuracy.values()
+df_model['Precision']=precision.values ()
+df_model['Recall']=recall.values()
+df_model
+ax = df_model.plot.barh()
+ax.legend(
+ncol=len(models.keys()),
+bbox_to_anchor=(0, 1),
+loc='lower left',
+prop={'size': 16}
+)
+plt.tight_layout()
