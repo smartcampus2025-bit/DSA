@@ -1,0 +1,44 @@
+Example CSV: sales_data.csv
+Columns: Region, Category, Sales, Profit, Order Date
+
+Step.1:Open Tableau Desktop
+
+Step.2:Click Connect → Text File
+
+Step.3:Select sales_data.csv → Open
+
+Step.4:Verify fields in Data Source tab
+
+Step.5:Click Sheet 1
+
+Visual Report 1: Bar Chart (Sales by Region)
+Step 6. Drag Region → Columns
+Step 7. Drag Sales → Rows
+Step 8. Click Show Me → Bar Chart
+Step 9. Drag Sales → Label (Marks)
+Step 10. Rename sheet: Sales by Region
+
+Visual Report 2: Pie Chart (Sales by Category)
+Step 11. Click New Worksheet
+Step 12. Drag Category → Color
+Step 13. Drag Sales → Angle
+Step 14. Click Show Me → Pie Chart
+Step 15. Rename sheet: Sales by Category
+
+Visual Report 3: Line Chart (Sales Trend)
+Step 16. Click New Worksheet
+Step 17. Drag Order Date → Columns
+Step 18. Drag Sales → Rows
+Step 19. Click Show Me → Line Chart
+Step 20. Rename sheet: Sales Trend
+
+Add Filter Example
+Step 21. Drag Region → Filters
+Step 22. Select required regions → OK
+
+Create Dashboard
+Step 23. Click New Dashboard
+Step 24. Drag Sales by Region, Sales by Category, Sales Trend into dashboard
+Step 25. Arrange charts properly
+Step 26. Add Dashboard Title
+Step 27. Save (File → Save)

@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+
+# -------- Pandas Series --------
+s = pd.Series([10, 20, 30, 40, 50])
+
+print("Series:\n", s)
+print("Empty:", s.empty)
+print("NDIM:", s.ndim)
+print("Size:", s.size)
+print("Dtype:", s.dtype)
+print("Values:", s.values)
+print("Head:\n", s.head(3))
+print("Tail:\n", s.tail(2))
+
+# -------- Pandas DataFrame --------
+data = {
+    "ID": [1, 2, 3, 4],
+    "Name": ["Amit", "Neha", "Ravi", "Pooja"],
+    "Marks": [85, 90, 78, 88]
+}
+
+df = pd.DataFrame(data)
+
+print("\nDataFrame:\n", df)
+print("Datatypes:\n", df.dtypes)
+print("Transpose:\n", df.T)
+print("Empty:", df.empty)
+print("NDIM:", df.ndim)
+print("Shape:", df.shape)
+print("Size:", df.size)
+print("Values:\n", df.values)
+print("Head:\n", df.head(2))
+print("Tail:\n", df.tail(2))
+
+# -------- DateTime --------
+dates = pd.date_range("2025-01-01", periods=5)
+df_dates = pd.DataFrame({"Date": dates})
+
+print("\nDateTime DataFrame:\n", df_dates)

@@ -1,0 +1,25 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Simple dataset
+data = np.array([
+    [1, 2],
+    [1, 4],
+    [1, 0],
+    [4, 2],
+    [4, 4],
+    [4, 0]
+])
+
+# Apply Hierarchical Clustering
+linked = linkage(data, method='ward')
+
+# Dendrogram Visualization
+plt.figure()
+dendrogram(linked)
+plt.xlabel("Data Points")
+plt.ylabel("Distance")
+plt.title("Hierarchical Clustering Dendrogram")
+plt.show()
+

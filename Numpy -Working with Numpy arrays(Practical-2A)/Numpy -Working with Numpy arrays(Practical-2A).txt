@@ -1,0 +1,73 @@
+import numpy as np
+
+# 1D Array
+a = np.array([1, 2, 3, 4, 5])
+print("1D Array:", a)
+
+# 2D Array
+b = np.array([[1, 2, 3], [4, 5, 6]])
+print("2D Array:\n", b)
+
+# 3D Array
+c = np.array([
+    [[1, 2], [3, 4]],
+    [[5, 6], [7, 8]]
+])
+print("3D Array:\n", c)
+
+# ND Array
+d = np.array([[[1], [2]], [[3], [4]]])
+print("ND Array:\n", d)
+
+# Broadcasting
+x = np.array([1, 2, 3])
+y = 10
+print("Broadcasting Result:", x + y)
+
+# Indexing
+print("Indexing:", a[2], b[1, 1])
+
+# Slicing
+print("Slicing 1D:", a[1:4])
+print("Slicing 2D:\n", b[:, 1:3])
+
+# Array Manipulation
+print("Transpose:\n", b.T)
+print("Flatten:", b.flatten())
+
+# String Functions
+s = np.array(["data", "science"])
+print("Upper:", np.char.upper(s))
+print("Add:", np.char.add(s, " numpy"))
+
+# Arithmetic Functions
+print("Add:", a + 2)
+print("Multiply:", a * 3)
+
+# Statistical Functions
+print("Mean:", np.mean(a))
+print("Sum:", np.sum(a))
+print("Std Dev:", np.std(a))
+
+# arange
+arr1 = np.arange(1, 10, 2)
+print("Arange:", arr1)
+
+# linspace
+arr2 = np.linspace(1, 10, 5)
+print("Linspace:", arr2)
+
+# Random Number Generation
+rand_arr = np.random.rand(5)
+print("Random:", rand_arr)
+
+# Seed
+np.random.seed(1)
+print("Seed Random:", np.random.rand(3))
+
+# Reshape
+reshaped = a.reshape(5, 1)
+print("Reshape:\n", reshaped)
+
+# Ravel
+print("Ravel:", b.ravel())

@@ -1,0 +1,61 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample data
+x = [1, 2, 3, 4, 5]
+y = [10, 20, 15, 30, 25]
+categories = ["A", "B", "A", "C", "B"]
+
+# Line plot with markers
+plt.figure()
+plt.plot(x, y, marker='o')
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.title("Line Plot")
+plt.grid(True)
+plt.show()
+
+# Subplot
+plt.figure()
+plt.subplot(1, 2, 1)
+plt.plot(x, y)
+plt.title("Subplot 1")
+
+plt.subplot(1, 2, 2)
+plt.bar(x, y)
+plt.title("Subplot 2")
+plt.show()
+
+# Scatter plot
+plt.figure()
+plt.scatter(x, y)
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.title("Scatter Plot")
+plt.show()
+
+# Bar chart
+plt.figure()
+plt.bar(x, y)
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.title("Bar Chart")
+plt.show()
+
+# Histogram
+plt.figure()
+plt.hist(y, bins=5)
+plt.title("Histogram")
+plt.show()
+
+# Pie chart
+plt.figure()
+plt.pie(y, labels=x, autopct="%1.1f%%")
+plt.title("Pie Chart")
+plt.show()
+
+# Seaborn Countplot
+plt.figure()
+sns.countplot(x=categories)
+plt.title("Count Plot")
+plt.show()

@@ -1,0 +1,63 @@
+#import library and load data
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model 
+import LinearRegression
+import seaborn as sns
+
+ds=pd.read_csv('C:/Users/Admin/Downloads/DATASETS/DATASETS/automobile.csv')
+ds.head()
+
+#Linear regression
+#.fit():- Trains a machine learning model by learning patterns from the training data.
+
+from sklearn.linear_model 
+import LinearRegression
+LR=LinearRegression()
+x = ds[['highway-mpg']]
+y = ds[['price']]
+LR.fit(x,y)
+
+
+LR2=linearRegression()
+x1 = ds[['highway-mpg']]
+y1 = ds[['price']]
+LR2.fit(x1,y1)
+
+#Multiple Regression
+
+LR2.predict(x)
+
+#intercept: The bias (constant) term learned by a linear model during training.
+#.coef: The coefficeints (weights) assigned to each feature by a linear model after training.
+
+intercept = LR2.intercept_
+slope = LR2.coef_
+print('intercept:' ,intercept,'\nslope:',slope)
+
+desiredMPG = int(input('Enter highway-mpg for predicting price: '))
+y=slope*desiredMPG + intercept
+print(y)
+
+MLR=LinearRegression()
+x = ds[['highway-mpg','horsepower']]
+y = ds['price']
+MLR.fit(x,y)
+MLR.predict(x)
+
+intercept = MLR.intercept_
+slope=MLR.coef_
+print('intercept:',intercept,'\nslope:',slope)
+
+
+desired_mpg=int(input('Enter a highway-mpg for predicting price:'))
+y=(slope[0]*desired_mpg +intercept) + (slope[1]*desired_mpg +intercept)
+print(y)
+
+#.regplot: creates a scatter plot with a fitted regression line to show the relationship between two variables.
+
+import seaborn as sns
+sns.regplot=(x='price',y='highway-mpg',data=ds)
+
+ 
