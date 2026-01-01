@@ -1,0 +1,121 @@
+
+LINEAR REGRESSION AND LOGISTIC REGRESSION - COMPLETE CODE
+========================================================
+
+PART 1: LINEAR REGRESSION (SciPy)
+
+import matplotlib.pyplot as plt
+from scipy import stats
+
+x = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+y = [5, 9, 13, 17, 21, 25, 29, 33, 37, 41]
+
+slope, intercept, r, p, std_err = stats.linregress(x, y)
+
+print("r-value:", r)
+print("p-value:", p)
+print("Standard error:", std_err)
+
+def myfunc(x):
+    return slope * x + intercept
+
+mymodel = list(map(myfunc, x))
+
+plt.scatter(x, y)
+plt.plot(x, mymodel, color='red')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.title('Linear Regression Example')
+plt.show()
+
+speed = myfunc(10)
+print(speed)
+
+
+PART 2: LOGISTIC REGRESSION (Basic)
+
+import numpy as np
+from sklearn import linear_model
+
+X = np.array([3.78, 2.44, 2.09, 0.14, 1.72, 1.65, 4.92, 4.37, 4.96, 4.52, 3.69, 5.88]).reshape(-1, 1)
+y = np.array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1])
+
+logr = linear_model.LogisticRegression()
+logr.fit(X, y)
+
+predicted = logr.predict(np.array([3.46]).reshape(-1, 1))
+print(predicted)
+
+print("The tumor of size 3.46 cm is predicted to be:",
+      "malignant (Yes)" if predicted[0] == 1 else "benign (No)")
+
+
+PART 3: LOGISTIC REGRESSION WITH PROBABILITY & GRAPH
+
+probs = logr.predict_proba(X)[:, 1]
+
+new_data = np.array([3.46]).reshape(-1, 1)
+predicted = logr.predict(new_data)
+predicted_prob = logr.predict_proba(new_data)
+
+print("Prediction for tumor size 3.46 cm:",
+      "malignant" if predicted[0] == 1 else "benign")
+print("Probability of being malignant:", predicted_prob[0][1])
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.scatter(X, y, color='blue', label='Original data')
+
+x_values = np.linspace(0, 6, 300).reshape(-1, 1)
+y_values = logr.predict_proba(x_values)[:, 1]
+
+plt.plot(x_values, y_values, color='red', label='Logistic regression curve')
+plt.scatter(new_data, predicted_prob[0][1], color='green', label='3.46 cm prediction')
+
+plt.xlabel('Tumor Size (cm)')
+plt.ylabel('Probability of Being Malignant')
+plt.title('Logistic Regression Graph')
+plt.legend()
+plt.show()
+
+
+PART 4: TRAIN TEST SPLIT & ACCURACY
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+logr.fit(X_train, y_train)
+y_pred = logr.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+
+PART 5: UNSEEN DATA PREDICTION
+
+unseen_data = np.array([3.46, 4.0, 2.5]).reshape(-1, 1)
+unseen_predictions = logr.predict(unseen_data)
+unseen_probabilities = logr.predict_proba(unseen_data)[:, 1]
+
+print("Predictions:", unseen_predictions)
+print("Probabilities:", unseen_probabilities)
+
+
+PART 6: USER INPUT PREDICTION
+
+def predict_tumor_size():
+    tumor_size = float(input("Enter tumor size in cm: "))
+    input_data = np.array([tumor_size]).reshape(-1, 1)
+    prediction = logr.predict(input_data)
+    probability = logr.predict_proba(input_data)[:, 1]
+
+    result = "malignant" if prediction[0] == 1 else "benign"
+    print(f"The tumor of size {tumor_size} cm is predicted to be: {result}")
+    print(f"Probability of being malignant: {probability[0]}")
+
+predict_tumor_size()
+
+END OF FILE

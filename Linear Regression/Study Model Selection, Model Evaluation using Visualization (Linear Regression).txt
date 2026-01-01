@@ -2,8 +2,7 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.linear_model 
-import LinearRegression
+from sklearn.linear_model import LinearRegression
 import seaborn as sns
 
 ds=pd.read_csv('C:/Users/Admin/Downloads/DATASETS/DATASETS/automobile.csv')
@@ -12,8 +11,7 @@ ds.head()
 #Linear regression
 #.fit():- Trains a machine learning model by learning patterns from the training data.
 
-from sklearn.linear_model 
-import LinearRegression
+from sklearn.linear_model import LinearRegression
 LR=LinearRegression()
 x = ds[['highway-mpg']]
 y = ds[['price']]
@@ -58,6 +56,20 @@ print(y)
 #.regplot: creates a scatter plot with a fitted regression line to show the relationship between two variables.
 
 import seaborn as sns
-sns.regplot=(x='price',y='highway-mpg',data=ds)
+sns.regplot(x='price',y='highway-mpg',data=ds)
 
+
+conclusion:
+Machine learning mein sahi model chunna (model selection) aur model ko theek se check karna (model evaluation) bahut zaroori hota hai.
+Jab hum sahi model choose karte hain, toh woh problem ke hisaab se best kaam karta hai.
+Aur jab hum model ko alag–alag tareeke se test karte hain—jaise metrics, graphs, accuracy—tab humein pata chalta hai ki model training data par bhi accha kaam karta hai aur naye (unseen) data par bhi.
+Hum do tarah ka testing karte hain:
+In-sample (training data par)
+Out-of-sample (naye data par)
+Dono ko mila kar test karne se:
+Overfitting kam hota hai
+Model zyada reliable hota hai
+Real world mein accurate aur stable predictions deta hai
+Simple shabdon mein:
+Sahi model + achchi testing = Har jagah accha perform karne wala model.
  
